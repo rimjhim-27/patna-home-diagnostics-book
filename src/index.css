@@ -109,21 +109,12 @@
   }
 }
 
-/* Advanced Medical-Themed Animations */
+/* Basic Medical-Themed Animations */
 @keyframes heartbeat {
   0%, 100% { transform: scale(1); }
   25% { transform: scale(1.1); }
   50% { transform: scale(1.05); }
   75% { transform: scale(1.15); }
-}
-
-@keyframes pulse-medical {
-  0%, 100% { 
-    box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.7);
-  }
-  50% { 
-    box-shadow: 0 0 0 20px rgba(59, 130, 246, 0);
-  }
 }
 
 @keyframes blood-flow {
@@ -193,10 +184,6 @@
 /* Animation Classes */
 .animate-heartbeat {
   animation: heartbeat 2s ease-in-out infinite;
-}
-
-.animate-pulse-medical {
-  animation: pulse-medical 2s infinite;
 }
 
 .animate-blood-flow {
@@ -270,25 +257,6 @@
   height: 100%;
   background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
   animation: report-scan 2s infinite;
-}
-
-.medical-icon-container {
-  position: relative;
-  display: inline-block;
-}
-
-.medical-icon-container::after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 100%;
-  height: 100%;
-  background: radial-gradient(circle, rgba(59, 130, 246, 0.2) 0%, transparent 70%);
-  transform: translate(-50%, -50%);
-  border-radius: 50%;
-  z-index: -1;
-  animation: pulse-medical 3s infinite;
 }
 
 /* Enhanced Hover Effects */
