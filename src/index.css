@@ -43,6 +43,13 @@
     --sidebar-accent-foreground: 240 5.9% 10%;
     --sidebar-border: 220 13% 91%;
     --sidebar-ring: 217.2 91.2% 59.8%;
+
+    /* Medical Theme Colors */
+    --medical-blue: 210 100% 50%;
+    --medical-mint: 160 100% 75%;
+    --medical-teal: 180 100% 40%;
+    --medical-light-blue: 200 100% 90%;
+    --medical-grey: 220 10% 95%;
   }
 
   .dark {
@@ -81,6 +88,13 @@
     --sidebar-accent-foreground: 240 4.8% 95.9%;
     --sidebar-border: 240 3.7% 15.9%;
     --sidebar-ring: 217.2 91.2% 59.8%;
+
+    /* Medical Theme Colors - Dark Mode */
+    --medical-blue: 210 80% 60%;
+    --medical-mint: 160 80% 60%;
+    --medical-teal: 180 80% 50%;
+    --medical-light-blue: 200 50% 20%;
+    --medical-grey: 220 10% 15%;
   }
 }
 
@@ -91,14 +105,43 @@
 
   body {
     @apply bg-background text-foreground;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
   }
 }
 
-/* Custom animations */
-@keyframes fade-in {
+/* Advanced Medical-Themed Animations */
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  25% { transform: scale(1.1); }
+  50% { transform: scale(1.05); }
+  75% { transform: scale(1.15); }
+}
+
+@keyframes pulse-medical {
+  0%, 100% { 
+    box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.7);
+  }
+  50% { 
+    box-shadow: 0 0 0 20px rgba(59, 130, 246, 0);
+  }
+}
+
+@keyframes blood-flow {
+  0% { transform: translateX(-100%); opacity: 0; }
+  50% { opacity: 1; }
+  100% { transform: translateX(100%); opacity: 0; }
+}
+
+@keyframes dna-rotate {
+  0% { transform: rotate(0deg) scale(1); }
+  50% { transform: rotate(180deg) scale(1.1); }
+  100% { transform: rotate(360deg) scale(1); }
+}
+
+@keyframes slide-up-fade {
   from {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(50px);
   }
   to {
     opacity: 1;
@@ -106,110 +149,256 @@
   }
 }
 
-@keyframes scale-in {
-  from {
-    opacity: 0;
-    transform: scale(0.95);
+@keyframes microscope-zoom {
+  0%, 100% { transform: scale(1) rotate(0deg); }
+  50% { transform: scale(1.2) rotate(5deg); }
+}
+
+@keyframes lab-equipment-glow {
+  0%, 100% { 
+    filter: brightness(1) drop-shadow(0 0 10px rgba(59, 130, 246, 0.3));
   }
-  to {
+  50% { 
+    filter: brightness(1.2) drop-shadow(0 0 20px rgba(59, 130, 246, 0.6));
+  }
+}
+
+@keyframes gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes floating-particles {
+  0%, 100% { 
+    transform: translateY(0px) rotate(0deg);
     opacity: 1;
-    transform: scale(1);
+  }
+  33% { 
+    transform: translateY(-20px) rotate(120deg);
+    opacity: 0.7;
+  }
+  66% { 
+    transform: translateY(-10px) rotate(240deg);
+    opacity: 0.9;
   }
 }
 
-@keyframes slide-up {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+@keyframes report-scan {
+  0% { transform: translateX(-100%); opacity: 0; }
+  25%, 75% { opacity: 1; }
+  100% { transform: translateX(100%); opacity: 0; }
 }
 
-@keyframes float {
-  0%, 100% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
+/* Animation Classes */
+.animate-heartbeat {
+  animation: heartbeat 2s ease-in-out infinite;
 }
 
-@keyframes glow {
-  0%, 100% {
-    box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
-  }
-  50% {
-    box-shadow: 0 0 30px rgba(59, 130, 246, 0.6);
-  }
+.animate-pulse-medical {
+  animation: pulse-medical 2s infinite;
 }
 
-.animate-fade-in {
-  animation: fade-in 0.6s ease-out forwards;
+.animate-blood-flow {
+  animation: blood-flow 4s ease-in-out infinite;
 }
 
-.animate-scale-in {
-  animation: scale-in 0.5s ease-out forwards;
+.animate-dna-rotate {
+  animation: dna-rotate 8s linear infinite;
 }
 
-.animate-slide-up {
-  animation: slide-up 0.7s ease-out forwards;
+.animate-slide-up-fade {
+  animation: slide-up-fade 0.8s ease-out forwards;
 }
 
-.animate-float {
-  animation: float 3s ease-in-out infinite;
+.animate-microscope-zoom {
+  animation: microscope-zoom 3s ease-in-out infinite;
 }
 
-.animate-glow {
-  animation: glow 2s ease-in-out infinite;
+.animate-lab-glow {
+  animation: lab-equipment-glow 3s ease-in-out infinite;
 }
 
-/* Hover effects */
-.hover-lift {
-  transition: all 0.3s ease;
+.animate-gradient-shift {
+  animation: gradient-shift 6s ease infinite;
+  background-size: 400% 400%;
 }
 
-.hover-lift:hover {
-  transform: translateY(-5px);
+.animate-floating-particles {
+  animation: floating-particles 6s ease-in-out infinite;
+}
+
+.animate-report-scan {
+  animation: report-scan 3s ease-in-out infinite;
+}
+
+/* Medical Theme Utility Classes */
+.medical-gradient {
+  background: linear-gradient(-45deg, 
+    hsl(var(--medical-blue)), 
+    hsl(var(--medical-teal)), 
+    hsl(var(--medical-mint)), 
+    hsl(var(--medical-light-blue))
+  );
+}
+
+.medical-card {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(59, 130, 246, 0.2);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.medical-card:hover {
+  background: rgba(255, 255, 255, 1);
+  border-color: rgba(59, 130, 246, 0.4);
+  transform: translateY(-8px);
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
 }
 
-/* Gradient text */
-.gradient-text {
-  background: linear-gradient(135deg, #3b82f6, #1e40af);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+.emergency-badge {
+  position: relative;
+  overflow: hidden;
 }
 
-/* Glass morphism effect */
-.glass {
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+.emergency-badge::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  animation: report-scan 2s infinite;
 }
 
-/* Smooth scrolling */
+.medical-icon-container {
+  position: relative;
+  display: inline-block;
+}
+
+.medical-icon-container::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.2) 0%, transparent 70%);
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  z-index: -1;
+  animation: pulse-medical 3s infinite;
+}
+
+/* Enhanced Hover Effects */
+.service-card {
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  position: relative;
+  overflow: hidden;
+}
+
+.service-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.1), transparent);
+  transition: left 0.5s;
+}
+
+.service-card:hover::before {
+  left: 100%;
+}
+
+.service-card:hover .service-icon {
+  transform: scale(1.2) rotate(5deg);
+  transition: transform 0.3s ease;
+}
+
+/* Medical Background Patterns */
+.medical-bg-pattern {
+  background-image: 
+    radial-gradient(circle at 20% 50%, rgba(59, 130, 246, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(16, 185, 129, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 40% 80%, rgba(139, 92, 246, 0.05) 0%, transparent 50%);
+}
+
+/* Dark Mode Transitions */
+.dark-transition {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Responsive Typography */
+.medical-heading {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1.2;
+}
+
+.medical-subheading {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.4;
+}
+
+/* Loading Skeleton for Test Results */
+@keyframes skeleton-loading {
+  0% {
+    background-position: -200px 0;
+  }
+  100% {
+    background-position: calc(200px + 100%) 0;
+  }
+}
+
+.skeleton {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200px 100%;
+  animation: skeleton-loading 1.5s infinite;
+}
+
+/* Smooth Scrolling */
 html {
   scroll-behavior: smooth;
 }
 
-/* Custom scrollbar */
+/* Enhanced Scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #f1f5f9;
+  background: hsl(var(--medical-grey));
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(to bottom, #3b82f6, #1e40af);
+  background: linear-gradient(to bottom, hsl(var(--medical-blue)), hsl(var(--medical-teal)));
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(to bottom, #2563eb, #1d4ed8);
+  background: linear-gradient(to bottom, hsl(var(--medical-teal)), hsl(var(--medical-mint)));
+}
+
+/* Focus States for Accessibility */
+.focus-medical:focus {
+  outline: 2px solid hsl(var(--medical-blue));
+  outline-offset: 2px;
+}
+
+/* Print Styles for Reports */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  
+  body {
+    background: white !important;
+    color: black !important;
+  }
 }

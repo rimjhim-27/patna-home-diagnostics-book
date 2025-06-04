@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Phone, Menu, X, FlaskConical } from "lucide-react";
+import { Phone, Menu, X, FlaskConical, Search } from "lucide-react";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -17,18 +17,18 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className="bg-white shadow-xl sticky top-0 z-50 border-b border-blue-100">
+    <nav className="bg-white/95 backdrop-blur-md shadow-xl sticky top-0 z-50 border-b border-blue-100 dark-transition">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <Link to="/" className="flex items-center space-x-3 group">
-            <div className="bg-gradient-to-br from-blue-600 to-blue-700 text-white p-2 rounded-xl shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-105">
+            <div className="medical-gradient text-white p-2 rounded-xl shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-105 medical-icon-container">
               <FlaskConical className="h-6 w-6" />
             </div>
             <div className="transition-all duration-300">
-              <h1 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent">
+              <h1 className="text-2xl font-bold medical-gradient bg-clip-text text-transparent medical-heading">
                 The LABs
               </h1>
-              <p className="text-xs text-gray-600 font-medium">Home Collection Only</p>
+              <p className="text-xs text-gray-600 font-medium">Advanced Diagnostics • Home Collection</p>
             </div>
           </Link>
 
@@ -38,20 +38,26 @@ const Navbar = () => {
               <Link
                 key={item.name}
                 to={item.path}
-                className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 relative overflow-hidden ${
+                className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 relative overflow-hidden service-card focus-medical ${
                   location.pathname === item.path
                     ? "text-blue-600 bg-blue-50 shadow-sm"
                     : "text-gray-700 hover:text-blue-600 hover:bg-blue-50"
                 }`}
               >
-                <span className="relative z-10">{item.name}</span>
+                <span className="relative z-10 medical-subheading">{item.name}</span>
                 {location.pathname === item.path && (
-                  <div className="absolute inset-0 bg-gradient-to-r from-blue-50 to-blue-100 animate-fade-in"></div>
+                  <div className="absolute inset-0 medical-gradient opacity-10 animate-slide-up-fade"></div>
                 )}
               </Link>
             ))}
+            
+            {/* Search Icon */}
+            <Button variant="ghost" size="icon" className="ml-2 hover:bg-blue-50 service-card">
+              <Search className="h-4 w-4 text-gray-600" />
+            </Button>
+            
             <Link to="/booking" className="ml-4">
-              <Button className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
+              <Button className="medical-gradient hover:opacity-90 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 animate-pulse-medical">
                 <Phone className="mr-2 h-4 w-4" />
                 Book Now
               </Button>
@@ -62,22 +68,22 @@ const Navbar = () => {
           <div className="md:hidden">
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="text-gray-700 hover:text-blue-600 transition-colors duration-300 p-2 rounded-lg hover:bg-blue-50"
+              className="text-gray-700 hover:text-blue-600 transition-colors duration-300 p-2 rounded-lg hover:bg-blue-50 service-card focus-medical"
             >
               {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
             </button>
           </div>
         </div>
 
-        {/* Mobile Navigation */}
+        {/* Enhanced Mobile Navigation */}
         {isOpen && (
-          <div className="md:hidden animate-fade-in">
-            <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-gradient-to-br from-gray-50 to-blue-50 rounded-lg mb-4 shadow-lg">
+          <div className="md:hidden animate-slide-up-fade">
+            <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 medical-card rounded-lg mb-4 shadow-lg">
               {navItems.map((item) => (
                 <Link
                   key={item.name}
                   to={item.path}
-                  className={`block px-4 py-3 rounded-lg text-base font-medium transition-all duration-300 ${
+                  className={`block px-4 py-3 rounded-lg text-base font-medium transition-all duration-300 service-card medical-subheading ${
                     location.pathname === item.path
                       ? "text-blue-600 bg-white shadow-sm"
                       : "text-gray-700 hover:text-blue-600 hover:bg-white"
@@ -87,14 +93,27 @@ const Navbar = () => {
                   {item.name}
                 </Link>
               ))}
+              
+              {/* Mobile Search */}
+              <div className="px-4 py-2">
+                <div className="relative">
+                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+                  <input 
+                    type="text" 
+                    placeholder="Search tests..."
+                    className="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  />
+                </div>
+              </div>
+              
               <Link
                 to="/booking"
                 className="block w-full mt-4"
                 onClick={() => setIsOpen(false)}
               >
-                <Button className="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 shadow-lg">
+                <Button className="w-full medical-gradient hover:opacity-90 shadow-lg animate-pulse-medical">
                   <Phone className="mr-2 h-4 w-4" />
-                  Book Now
+                  Book Emergency Test
                 </Button>
               </Link>
             </div>
