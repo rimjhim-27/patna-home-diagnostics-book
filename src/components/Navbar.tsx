@@ -17,15 +17,15 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className="bg-white/95 backdrop-blur-md shadow-xl sticky top-0 z-50 border-b border-gray-100 dark-transition">
+    <nav className="bg-gradient-to-r from-white via-blue-50 to-indigo-50 backdrop-blur-md shadow-xl sticky top-0 z-50 border-b border-blue-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <Link to="/" className="flex items-center space-x-3 group">
-            <div className="bg-blue-600 text-white p-2 rounded-xl shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-105">
+            <div className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white p-2 rounded-xl shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-105">
               <FlaskConical className="h-6 w-6" />
             </div>
             <div className="transition-all duration-300">
-              <h1 className="text-2xl font-bold text-blue-600 medical-heading">
+              <h1 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent medical-heading">
                 The LABs
               </h1>
               <p className="text-xs text-gray-600 font-medium">Advanced Diagnostics • Home Collection</p>
@@ -40,8 +40,8 @@ const Navbar = () => {
                 to={item.path}
                 className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 relative overflow-hidden focus-medical ${
                   location.pathname === item.path
-                    ? "text-blue-600 bg-blue-50 border-b-2 border-blue-600"
-                    : "text-gray-700 hover:text-blue-600 hover:bg-blue-50"
+                    ? "text-blue-600 bg-gradient-to-r from-blue-50 to-indigo-50 border-b-2 border-blue-600 shadow-sm"
+                    : "text-gray-700 hover:text-blue-600 hover:bg-gradient-to-r hover:from-blue-50 hover:to-indigo-50"
                 }`}
               >
                 <span className="relative z-10 medical-subheading">{item.name}</span>
@@ -49,12 +49,12 @@ const Navbar = () => {
             ))}
             
             {/* Search Icon */}
-            <Button variant="ghost" size="icon" className="ml-2 hover:bg-blue-50 transition-all duration-300">
+            <Button variant="ghost" size="icon" className="ml-2 hover:bg-gradient-to-r hover:from-blue-50 hover:to-indigo-50 transition-all duration-300">
               <Search className="h-4 w-4 text-gray-600" />
             </Button>
             
             <Link to="/booking" className="ml-4">
-              <Button className="bg-blue-600 hover:bg-blue-700 text-white shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
+              <Button className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
                 <Phone className="mr-2 h-4 w-4" />
                 Book Now
               </Button>
@@ -65,7 +65,7 @@ const Navbar = () => {
           <div className="md:hidden">
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="text-gray-700 hover:text-blue-600 transition-colors duration-300 p-2 rounded-lg hover:bg-blue-50 focus-medical"
+              className="text-gray-700 hover:text-blue-600 transition-colors duration-300 p-2 rounded-lg hover:bg-gradient-to-r hover:from-blue-50 hover:to-indigo-50 focus-medical"
             >
               {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
             </button>
@@ -75,15 +75,15 @@ const Navbar = () => {
         {/* Enhanced Mobile Navigation */}
         {isOpen && (
           <div className="md:hidden animate-slide-up-fade">
-            <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white rounded-lg mb-4 shadow-lg">
+            <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-gradient-to-br from-white to-blue-50 rounded-lg mb-4 shadow-lg border border-blue-100">
               {navItems.map((item) => (
                 <Link
                   key={item.name}
                   to={item.path}
                   className={`block px-4 py-3 rounded-lg text-base font-medium transition-all duration-300 medical-subheading ${
                     location.pathname === item.path
-                      ? "text-blue-600 bg-blue-50 border-l-4 border-blue-600"
-                      : "text-gray-700 hover:text-blue-600 hover:bg-blue-50"
+                      ? "text-blue-600 bg-gradient-to-r from-blue-50 to-indigo-50 border-l-4 border-blue-600"
+                      : "text-gray-700 hover:text-blue-600 hover:bg-gradient-to-r hover:from-blue-50 hover:to-indigo-50"
                   }`}
                   onClick={() => setIsOpen(false)}
                 >
@@ -98,7 +98,7 @@ const Navbar = () => {
                   <input 
                     type="text" 
                     placeholder="Search tests..."
-                    className="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white"
                   />
                 </div>
               </div>
@@ -108,7 +108,7 @@ const Navbar = () => {
                 className="block w-full mt-4"
                 onClick={() => setIsOpen(false)}
               >
-                <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white shadow-lg">
+                <Button className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white shadow-lg">
                   <Phone className="mr-2 h-4 w-4" />
                   Book Emergency Test
                 </Button>
